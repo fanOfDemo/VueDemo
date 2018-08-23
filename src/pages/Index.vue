@@ -1,35 +1,19 @@
 <template>
-  <div class="a">
-    <div class="register-l" align="center">
-       <br />
-				<div class="input-group" style="width: 300px;">
-					<input type="text" class="form-control" placeholder="邮箱/手机号/用户名" style="height: 40px;" />
-					<span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true" />
-				</div>
-				<br />
-				<div class="input-group" style="width: 300px;">
-					<input type="text" class="form-control" placeholder="密码" style="height: 40px;" />
-					<span class="glyphicon glyphicon-lock form-control-feedback" />
-				</div>
-				<br />
-				<div class="input-group" style="width: 300px;">
-					<input type="text" class="form-control" placeholder="手机号" style="height: 40px;" />
-					<span class="glyphicon glyphicon-phone form-control-feedback" />
-				</div>
-				<br />
-				<div class="input-group" style="width: 300px;">
-          	<input type="text" class="form-control" placeholder="验证码" style=" height: 40px; width: 150px;" />
-						<div class="register-msg-btn" v-show="show" v-on:click="getCode">发送验证码</div>
-						<span class="register-msg-btn" v-show="!show">{{count}} s</span>
-				
-					<span class="glyphicon glyphicon-font form-control-feedback" />
-				</div>
-				<br />
-        <br />
-				<button class="btn-register">注册</button>
+  <div class="box" >
+    <!-- <md-input class="input" v-model="newItem" v-on:keyup.enter="addItem" placeholder="请输入记事"> -->
 
-    </div>
-   
+     <md-field>
+      <label>请记录笔记</label>
+      <md-input  v-model="newItem" v-on:keyup.enter="addItem" ></md-input>
+    </md-field>
+
+     <md-list class="ul">
+      <md-list-item class="li" @click="toggleFinish(item)"  v-for="item in lists"   v-bind:key="item.label" >
+          <span class="item" v-bind:class="{underLine:item.finish}"  >  {{item.label}} </span> <div v-show="show">{{item.finish}}</div>  
+          <md-checkbox v-model="item.finish" ></md-checkbox>
+      </md-list-item>
+     
+    </md-list>
   </div>
 
 </template>
@@ -38,122 +22,116 @@
 export default {
   data() {
     return {
-      activeColor: 'red',
-      fontSize: 30,
-      title:'sd',
-      show: true,    
-			count: '',    
-			timer: null, 
+      lists: [
+        {
+          label: "java",
+          finish: true
+        },
+        {
+          label: "c",
+          finish: false
+        },
+        {
+          label: "c++",
+          finish: false
+        },
+        {
+          label: "vue",
+          finish: false
+        },
+        {
+          label: "c1",
+          finish: false
+        },
+        {
+          label: "c+",
+          finish: false
+        },
+        {
+          label: "vuex",
+          finish: false
+        },
+        {
+          label: "c#",
+          finish: false
+        },
+        {
+          label: "js",
+          finish: false
+        }
+      ],
+      newItem: "",
+      show: false
     };
   },
   methods: {
-    // 根据选择的按钮进行页面跳转 或者 按钮颜色变换
-    chooseMe: function(i) {
-      switch (i) { //判断选择哪一个路由
-        case 1:
-          router.push("/index");
-          break;
-        case 2:
-          router.push("/about");
-          break;
-        case 3:
-          router.push("/404");
-          break;
-      }
+    toggleFinish(item) {
+      item.finish = !item.finish;
     },
-    getCode(){      
-				const TIME_COUNT = 60;      
-				if (!this.timer) {        
-					this.count = TIME_COUNT;        
-					this.show = false;        
-					this.timer = setInterval(() => {        
-						if (this.count > 0 && this.count <= TIME_COUNT) {          
-							this.count--;         
-						} else {          
-							this.show = true;          
-							clearInterval(this.timer);          
-							this.timer = null;         
-						}        
-					}, 1000)       
-				}    
-			}  
+    addItem() {
+      this.lists.push({
+        label: this.newItem,
+        finish: false
+      });
+    },
+    visiable() {
+      this.show = !this.show;
+    }
   }
 };
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
+<style  lang="scss">
+h1,
+h2 {
   font-weight: normal;
 }
-.ul {
-  list-style-type: none;
-  padding: 0;
-  float: left;
+body {
+  white-space: nowrap;
+  background-color: white;
 }
-.li {
-  display: inline-block;
-  margin: 0 10px;
-}
-.a {
-  align-content: center;
- 
-  background-color: #ffffff;
-  display: inline-block;
-  font-weight: normal;
-  color: #42b983;
-  font-weight: bold;
-}
- input:focus{ 
-  background-color:#fff;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #42b983;
-}
-.form-control {
-  color: #42b983;
-  font-size: 1.6rem;
-  border-style: solid;
-  border-width: 2px;
-  border-color: transparent;
-  outline-style: none;
-	outline-width: 0 ;
-  outline-color: transparent;
-  float:left;
- 
-}
-.register-l{
-   width: 100%;
-}
-.input-group{
-    display: flex;
-    flex-flow: row;
-    border-radius: 5px;
-    border: 2px solid #ffffff;
-    background: #ffffff;
-    color: #42b983;
-    
-}
-.register-msg-btn {
-    border-radius: 5px;
-    padding-block-end: 1rem;
-    border: 2px solid #ffffff;
-    background: #ffffff;
-    color: #42b983;
-    align-content: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1rem;
-}
-.btn-register {
-  color: #fff;
-  width: 100%;
-  text-align: center;
-  font-size: 1.6rem;
-  background: #42b983;
-  border-radius: 5px;
-  border: 2px solid #42b983;
+.md-app {
+  max-height: 100%;
+  height: 100%;
+  border: 1px solid rgba(#000, 0.12);
 }
 
+.ul {
+  list-style-type: none;
+  display: block;
+}
+.li {
+  display: list-item;
+  width: 100%;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  align-content: stretch;
+  color: black;
+  font: bold;
+  font-size: 14px;
+}
+.item {
+  font: bold;
+  font-size: 14px;
+}
+.underLine {
+  text-decoration: underline;
+  font: bold;
+}
+.input {
+  border: 0;
+  width: 100%;
+  height: 100px;
+  border-style: none;
+  outline-style: none;
+  border-color: aqua;
+  outline-offset: 0;
+  outline-color: aqua;
+}
+.box {
+  align-content: flex-start;
+  align-self: auto;
+}
 </style>

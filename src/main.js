@@ -7,6 +7,11 @@ import router from './router'
 import store from './store/'
 import VueLazyload from 'vue-lazyload'
 
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/theme/default.css'
+import 'vue-material/dist/vue-material.css'
+
+
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
   preLoad: 1.3,
@@ -16,7 +21,16 @@ Vue.use(VueLazyload, {
 });
 //设置初识sessionStorage
 window.sessionStorage.setItem('history', JSON.stringify(history));
-/* eslint-disable no-new */
+// Vue.material.registerTheme('default', {
+//   primary: 'blue',
+//   accent: 'red',
+//   warn: 'red',
+//   background: 'grey'
+// })
+// Vue.material.setCurrentTheme('default')
+Vue.use(VueMaterial)
+
+
 new Vue({
   el: '#app',
   router,
