@@ -133,5 +133,6 @@ body {
 .box {
   align-content: flex-start;
   align-self: auto;
+  height: 100%;
 }
 </style>

@@ -57,7 +57,7 @@
         </md-list>
       </md-app-drawer>
 
-      <md-app-content class="pages">
+      <md-app-content class="page-container">
            <router-view v-on:index="chooseMe" >   </router-view>
       </md-app-content>
     </md-app> 
@@ -98,8 +98,8 @@ export default {
 </script>
 <style lang="scss">
 .md-app {
-  max-height: 2000px;
   border: 1px solid rgba(#000, 0.12);
+  height: 100%;
 }
 
 // Demo purposes only
@@ -108,7 +108,7 @@ export default {
   max-width: calc(100vw - 125px);
 }
 .page-container {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 .md-transparent {
