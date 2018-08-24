@@ -1,8 +1,7 @@
 <template>
   
    <div class="page-container">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    
     <md-app md-waterfall md-mode="flexible">
       <md-app-toolbar class="md-large md-dense md-primary">
         <div class="md-toolbar-row">
@@ -104,7 +103,7 @@ export default {
 
 // Demo purposes only
 .md-drawer {
-  width: 230px;
+  width: 180px;
   max-width: calc(100vw - 125px);
 }
 .page-container {
