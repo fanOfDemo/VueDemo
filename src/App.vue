@@ -22,9 +22,9 @@
 
         <div class="md-toolbar-row">
           <md-tabs class="md-primary">
-            <md-tab id="tab-home" v-on:click='chooseMe(1)' md-label="Home"></md-tab>
-            <md-tab id="tab-pages" v-on:click='chooseMe(2)' md-label="Pages"></md-tab>
-            <md-tab id="tab-posts" v-on:click='chooseMe(3)'  md-label="Posts"></md-tab>
+            <md-tab id="tab-home" v-on:click='chooseMe(1)' md-label="todolist"></md-tab>
+            <md-tab id="tab-pages" v-on:click='chooseMe(2)' md-label="toutiao"></md-tab>
+            <md-tab id="tab-posts" v-on:click='chooseMe(3)'  md-label="xxx"></md-tab>
             <md-tab id="tab-favorites" md-label="Favorites"></md-tab>
           </md-tabs>
         </div>
@@ -84,13 +84,14 @@ export default {
           break;
         case 2:
           router.push("/about");
-          this.title = "关于";
+          this.title = "头条";
           break;
         case 3:
           router.push("/404");
           this.title = "页面找不到了";
           break;
       }
+      console.log(this.title)
     }
   }
 };

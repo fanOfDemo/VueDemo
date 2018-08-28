@@ -8,7 +8,7 @@
     </md-field>
 
      <md-list class="ul">
-      <md-list-item class="li" @click="toggleFinish(item)"  v-for="item in lists"   v-bind:key="item.label" >
+      <md-list-item class="li" @click="toggleFinish(item)"  v-for="(item,index ) in lists"   v-bind:key="index" >
           <span class="item" v-bind:class="{underLine:item.finish}"  >  {{item.label}} </span> <div v-show="show">{{item.finish}}</div>  
           <md-checkbox v-model="item.finish" ></md-checkbox>
       </md-list-item>

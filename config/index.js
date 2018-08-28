@@ -10,7 +10,14 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {'/gp': {
+      target: 'http://is.snssdk.com/',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/gp': '/'
+      }
+    }
+},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

@@ -10,7 +10,8 @@ import VueLazyload from 'vue-lazyload'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/theme/default.css'
 import 'vue-material/dist/vue-material.css'
-
+import axios from 'axios';
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
